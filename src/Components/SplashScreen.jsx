@@ -56,16 +56,24 @@ const SplashScreen = () => {
           z-index: 2;
         }
         .blur-text-message {
-          position: absolute;
-          bottom: 10vh;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
           width: 100vw;
           text-align: center;
           z-index: 3;
-          font-size: 2rem;
+          font-size: 3.2rem; /* slightly bigger */
           color: #fff;
           font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
-          font-weight: 700;
+          font-weight: 900; /* boldest */
           letter-spacing: 0.05em;
+          line-height: 1.1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: auto;
+          text-transform: uppercase; /* optional: matches AYUSH style */
         }
         .loading-text .shiny-text {
           font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
@@ -106,8 +114,8 @@ const SplashScreen = () => {
               <HyperSpeed />
             </div>
             {showBlurText && (
-              <div className="blur-text-message">
-                <BlurText text="Taking u to the Ayush World" animateBy="words" />
+              <div className="blur-text-message center-message">
+                <BlurText text="Taking you to the Ayush World" animateBy="words" />
               </div>
             )}
           </>
