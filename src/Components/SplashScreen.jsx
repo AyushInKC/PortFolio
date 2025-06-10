@@ -63,17 +63,17 @@ const SplashScreen = () => {
           width: 100vw;
           text-align: center;
           z-index: 3;
-          font-size: 3.2rem; /* slightly bigger */
+          font-size: 2.8rem;
           color: #fff;
-          font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
-          font-weight: 900; /* boldest */
-          letter-spacing: 0.05em;
+          font-family: 'Lato', 'Nunito Sans', 'Segoe UI', Arial, sans-serif;
+          font-weight: 900;
+          letter-spacing: 0.01em;
           line-height: 1.1;
           display: flex;
           align-items: center;
           justify-content: center;
           height: auto;
-          text-transform: uppercase; /* optional: matches AYUSH style */
+          text-transform: none;
         }
         .loading-text .shiny-text {
           font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
@@ -115,7 +115,7 @@ const SplashScreen = () => {
             </div>
             {showBlurText && (
               <div className="blur-text-message center-message">
-                <BlurText text="Taking you to the Ayush World" animateBy="words" />
+                <BlurText text="Experience the Perspective of Ayush" animateBy="words" />
               </div>
             )}
           </>
