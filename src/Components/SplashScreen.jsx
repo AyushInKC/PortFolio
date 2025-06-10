@@ -76,7 +76,7 @@ const SplashScreen = () => {
           z-index: 3;
           font-size: 2.6rem;
           color: #fff;
-          font-family: 'Inter', 'Nunito Sans', 'Lato', 'Segoe UI', Arial, sans-serif;
+          font-family: 'Nunito Sans', 'Lato', 'Inter', 'Segoe UI', Arial, sans-serif;
           font-weight: 900;
           letter-spacing: 0.01em;
           line-height: 1.1;
@@ -112,7 +112,6 @@ const SplashScreen = () => {
         }
       `}</style>
       <div id="loading">
-        {/* Both are rendered together for crossfade */}
         <div
           className={`loading-text${fadeOutAyush ? " fade-out" : ""}`}
           id="name-loader"
