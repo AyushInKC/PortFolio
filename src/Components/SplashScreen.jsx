@@ -4,7 +4,7 @@ import ShinyText from "./ShinyText";
 import HyperSpeed from "./HyperSpeed";
 import BlurText from "./BlurText";
 
-const SplashScreen = () => {
+const SplashScreen = ({ onFinish }) => {
   const [fadeOutAyush, setFadeOutAyush] = useState(false);
   const [fadeInHyperSpeed, setFadeInHyperSpeed] = useState(false);
   const [showBlurText, setShowBlurText] = useState(false);
@@ -24,13 +24,18 @@ const SplashScreen = () => {
         });
       },
       onComplete: () => {
-        // Start both transitions at the same time for a true crossfade
         setFadeOutAyush(true);
         setFadeInHyperSpeed(true);
-        setTimeout(() => setShowBlurText(true), 400); // Show blur text after crossfade
+        setTimeout(() => {
+          setShowBlurText(true);
+          // After 2 seconds of HyperSpeed, show landing page
+          setTimeout(() => {
+            if (onFinish) onFinish();
+          }, 2000);
+        }, 400);
       },
     });
-  }, []);
+  }, [onFinish]);
 
   return (
     <>
