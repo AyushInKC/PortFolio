@@ -5,7 +5,8 @@ import HyperSpeed from "./HyperSpeed";
 import BlurText from "./BlurText";
 
 const SplashScreen = () => {
-  const [showHyperSpeed, setShowHyperSpeed] = useState(false);
+  const [fadeOutAyush, setFadeOutAyush] = useState(false);
+  const [fadeInHyperSpeed, setFadeInHyperSpeed] = useState(false);
   const [showBlurText, setShowBlurText] = useState(false);
   const name = "AYUSH".split("");
 
@@ -23,10 +24,11 @@ const SplashScreen = () => {
         });
       },
       onComplete: () => {
-        setTimeout(() => {
-          setShowHyperSpeed(true);
-          setTimeout(() => setShowBlurText(true), 300); // Show BlurText shortly after HyperSpeed
-        }, 0);
+        // Start both transitions at the same time
+        setFadeOutAyush(true);
+        setFadeInHyperSpeed(true);
+        // Show blur text just after the crossfade
+        setTimeout(() => setShowBlurText(true), 400);
       },
     });
   }, []);
@@ -50,10 +52,19 @@ const SplashScreen = () => {
           width: 100vw;
           height: 100vh;
           z-index: 1;
+          opacity: 0;
+          transition: opacity 0.6s;
+        }
+        .hyperspeed-bg.fade-in {
+          opacity: 1;
         }
         .loading-text {
           position: relative;
           z-index: 2;
+          transition: opacity 0.6s;
+        }
+        .loading-text.fade-out {
+          opacity: 0;
         }
         .blur-text-message {
           position: fixed;
@@ -63,9 +74,9 @@ const SplashScreen = () => {
           width: 100vw;
           text-align: center;
           z-index: 3;
-          font-size: 2.8rem;
+          font-size: 2.6rem;
           color: #fff;
-          font-family: 'Lato', 'Nunito Sans', 'Segoe UI', Arial, sans-serif;
+          font-family: 'Inter', 'Nunito Sans', 'Lato', 'Segoe UI', Arial, sans-serif;
           font-weight: 900;
           letter-spacing: 0.01em;
           line-height: 1.1;
@@ -101,24 +112,25 @@ const SplashScreen = () => {
         }
       `}</style>
       <div id="loading">
-        {!showHyperSpeed && (
-          <div className="loading-text" id="name-loader">
-            {name.map((letter, idx) => (
-              <ShinyText key={idx} text={letter} />
-            ))}
+        {/* Both are rendered together for crossfade */}
+        <div
+          className={`loading-text${fadeOutAyush ? " fade-out" : ""}`}
+          id="name-loader"
+        >
+          {name.map((letter, idx) => (
+            <ShinyText key={idx} text={letter} />
+          ))}
+        </div>
+        <div className={`hyperspeed-bg${fadeInHyperSpeed ? " fade-in" : ""}`}>
+          <HyperSpeed />
+        </div>
+        {showBlurText && (
+          <div className="blur-text-message center-message">
+            <BlurText
+              text="Experience the Perspective of Ayush"
+              animateBy="words"
+            />
           </div>
-        )}
-        {showHyperSpeed && (
-          <>
-            <div className="hyperspeed-bg">
-              <HyperSpeed />
-            </div>
-            {showBlurText && (
-              <div className="blur-text-message center-message">
-                <BlurText text="Experience the Perspective of Ayush" animateBy="words" />
-              </div>
-            )}
-          </>
         )}
       </div>
     </>
