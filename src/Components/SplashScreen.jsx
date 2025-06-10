@@ -24,11 +24,10 @@ const SplashScreen = () => {
         });
       },
       onComplete: () => {
-        // Start both transitions at the same time
+        // Start both transitions at the same time for a true crossfade
         setFadeOutAyush(true);
         setFadeInHyperSpeed(true);
-        // Show blur text just after the crossfade
-        setTimeout(() => setShowBlurText(true), 400);
+        setTimeout(() => setShowBlurText(true), 400); // Show blur text after crossfade
       },
     });
   }, []);
@@ -85,6 +84,11 @@ const SplashScreen = () => {
           justify-content: center;
           height: auto;
           text-transform: none;
+          user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          pointer-events: none;
         }
         .loading-text .shiny-text {
           font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
